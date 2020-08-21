@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "ConcertOne";
+  src: local("ConcertOne"),
+    url(./assets/fonts/ConcertOne.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Quicksand";
+    src: local("Quicksand"),
+      url(./assets/fonts/Quicksand-Regular.ttf) format("truetype");
+  }
+  
