@@ -1,12 +1,16 @@
 import axios from 'axios'
 
-const url = 'https://www.reddit.com/r/kpics/random.json';
+const url = 'https://www.reddit.com/r/kpics/randomrising.json?limit=5';
 
-export const fetchItem = async () => {
+export const fetchItems = async () => {
     const response = await axios.get(url);
-    const data = response.data[0].data.children[0].data
-    const image = data.url
-    const title = data.title
-    const author = data.author
-    return { image, title, author }
+    const children = response.data.data.children
+    const items = children.map(({ data }) => {
+        return {
+            image: data.url,
+            title: data.title,
+            author: data.author
+        }
+    })
+    return items
 }

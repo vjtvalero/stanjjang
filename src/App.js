@@ -1,44 +1,36 @@
 import React, { useState, useEffect } from 'react'
-
-import { fetchItem } from './api/items'
+import { fetchItems } from './api/items'
+import Navbar from './components/navbar'
+import VoteItemContainer from './components/voteItemContainer'
 
 const App = () => {
-    const loading = 'assets/images/loading.gif'
-    const [image, setImage] = useState(loading)
-    const [info, setInfo] = useState({})
-    const next = async () => {
-        setImage(loading)
-        setInfo({})
-        const { image, title, author } = await fetchItem()
-        setImage(image)
-        setInfo({ title, author })
+    const loadingImage = 'assets/images/loading.gif'
+    const [items, setItems] = useState([])
+    const [isLoading, setLoading] = useState(false)
+    const getItems = async () => {
+        setLoading(true)
+        const items = await fetchItems()
+        setItems(prevItems => {
+            return [...prevItems, ...items]
+        })
+        setLoading(false)
     }
+
     useEffect(() => {
-        next()
+        getItems()
     }, [])
 
-    const hasInfo = Object.keys(info).length > 0
-
     return (
-        <div style={{ backgroundColor: 'white' }}>
-            <div style={{ paddingTop: '0.5rem', paddingBottom: '0.5rem' }}>
-                <center style={{ fontFamily: 'ConcertOne' }}>{process.env.REACT_APP_NAME}</center>
+        <div style={{ maxWidth: '480px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <Navbar />
+            <div style={{ marginTop: '3.5rem', backgroundColor: '#F2F2F2' }}>
+                <VoteItemContainer items={items} isLoading={isLoading} getItems={getItems} />
+                {
+                    isLoading && (
+                        <img src={loadingImage} alt="loading img" />
+                    )
+                }
             </div>
-            {image && (
-                <img src={image} alt="kpop img" style={{ height: 'auto', width: 'auto' }} onClick={next} />
-            )}
-            {
-                hasInfo && (
-                    <div style={{ padding: '1rem', fontFamily: 'Quicksand', lineHeight: '1.5' }}>
-                        <p style={{ marginBottom: '0' }}>{info.title}</p>
-                        <small style={{ color: 'lightgray', fontSize: 'small' }}>{info.author}</small>
-                        <div style={{ marginTop: '1rem' }}>
-                            <button className="button -block">Sign up to vote</button>
-                        </div>
-                    </div>
-                )
-            }
-
         </div>
     )
 }
