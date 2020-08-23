@@ -7,9 +7,9 @@ const App = () => {
     const loadingImage = 'assets/images/loading.gif'
     const [items, setItems] = useState([])
     const [isLoading, setLoading] = useState(false)
-    const getItems = async () => {
+    const getItems = async (after = '') => {
         setLoading(true)
-        const items = await fetchItems()
+        const items = await fetchItems(after)
         setItems(prevItems => {
             return [...prevItems, ...items]
         })
