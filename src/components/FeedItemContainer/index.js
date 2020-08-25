@@ -1,6 +1,8 @@
 import React, { useRef, useCallback } from 'react'
+import { Link } from 'react-router-dom'
+import { Image } from 'react-bootstrap'
 
-const VoteItemContainer = ({ items, isLoading, getItems }) => {
+const FeedItemContainer = ({ items, isLoading, getItems }) => {
     const voteItems = items.map((item, index) => {
         if (items.length === index + 1) {
             return <VoteItem key={index} item={item} isLoading={isLoading} getItems={getItems} hasRef={true} />
@@ -22,21 +24,22 @@ const VoteItem = ({ item, isLoading, getItems, hasRef = false }) => {
             }
         })
         if (node) observer.current.observe(node)
-    }, [isLoading, getItems])
+    }, [isLoading, getItems, item.ref])
     return (
         <div style={containerStyle} ref={hasRef ? lastElementRef : null}>
             <p style={itemTopStyle}>
                 <img src="assets/images/logo.png" alt="author img" style={{ width: '24px', height: '24px', verticalAlign: 'middle' }} />
                 <span style={{ marginLeft: '1rem', fontWeight: 'bold', fontSize: '0.8rem' }}>{item.author}</span>
             </p>
-            <img
+            <Image
                 src={item.image}
-                alt="kpop img" />
+                alt="kpop img"
+                fluid />
             <div style={infoStyle}>
                 <p style={{ marginBottom: 0 }}>{item.title}</p>
                 <small style={{ color: 'gray', fontSize: '0.8rem' }}>2 days ago</small>
                 <div style={{ marginTop: '1rem' }}>
-                    <button className="button -block -small">Sign up to vote</button>
+                    <span><Link to="/signup">Sign up</Link> or <Link to="/login">log in</Link> to vote</span>
                 </div>
             </div>
         </div>
@@ -69,4 +72,4 @@ const itemTopStyle = {
     paddingBottom: '0.8rem',
 }
 
-export default VoteItemContainer
+export default FeedItemContainer
