@@ -8,6 +8,9 @@ export default function Login() {
   const [touched, setTouched] = useState({});
   const sendEmail = (email) => {
     setValid(email && validateEmail(email));
+    if (isValid) {
+        alert('send email')
+    }
   };
 
   return (

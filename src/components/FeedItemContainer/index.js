@@ -4,7 +4,9 @@ import { Image } from 'react-bootstrap'
 
 const FeedItemContainer = ({ items, isLoading, getItems }) => {
     const voteItems = items.map((item, index) => {
-        if (items.length === index + 1) {
+        const currentPosition = index + 1
+        const positionToGetNext = items.length - 2
+        if (currentPosition === positionToGetNext) {
             return <VoteItem key={index} item={item} isLoading={isLoading} getItems={getItems} hasRef={true} />
         } else {
             return <VoteItem key={index} item={item} isLoading={isLoading} getItems={getItems} />
@@ -39,7 +41,7 @@ const VoteItem = ({ item, isLoading, getItems, hasRef = false }) => {
                 <p style={{ marginBottom: 0 }}>{item.title}</p>
                 <small style={{ color: 'gray', fontSize: '0.8rem' }}>2 days ago</small>
                 <div style={{ marginTop: '1rem' }}>
-                    <span><Link to="/signup">Sign up</Link> or <Link to="/login">log in</Link> to vote</span>
+                    <span><Link to="/login">log in</Link> to vote</span>
                 </div>
             </div>
         </div>
