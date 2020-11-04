@@ -1,11 +1,11 @@
 {
-    "short_name": "Stanjjang",
-    "name": "Stanjjang",
+    "short_name": "Superstan",
+    "name": "Superstan",
     "icons": [
         {
             "src": "assets/images/logo.png",
             "type": "image/png",
-            "sizes": "1024x1024",
+            "sizes": "144x144",
             "purpose": "any maskable"
         }
     ],
