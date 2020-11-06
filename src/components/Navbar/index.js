@@ -14,7 +14,7 @@ const Navbar = () => {
       </span>
       <small>
         <Link to="/login" className="text-dark">
-          Log in
+          Get started
         </Link>
       </small>
     </div>

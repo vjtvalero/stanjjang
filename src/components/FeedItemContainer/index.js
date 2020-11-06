@@ -41,7 +41,7 @@ const VoteItem = ({ item, isLoading, getItems, hasRef = false }) => {
                 <p style={{ marginBottom: 0 }}>{item.title}</p>
                 <small style={{ color: 'gray', fontSize: '0.8rem' }}>2 days ago</small>
                 <div style={{ marginTop: '1rem' }}>
-                    <span><Link to="/login">log in</Link> to vote</span>
+                    <span><Link to="/login">Log in</Link> to vote</span>
                 </div>
             </div>
         </div>
