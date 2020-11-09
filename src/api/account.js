@@ -43,3 +43,20 @@ export const apiLogin = async (email, password) => {
         }
     }
 };
+
+export const apiIsLoggedIn = async () => {
+    try {
+        const sessKey = localStorage.getItem('sessKey');
+        if (sessKey) {
+            const response = await API.post(`/account/check-session`, {}, {
+                headers: { 'Authorization': `Bearer ${sessKey}` }
+            });
+            if (response.status === 200) {
+                return response.data;
+            }
+        }
+        throw new Error();
+    } catch (error) {
+        return {};
+    }
+};
