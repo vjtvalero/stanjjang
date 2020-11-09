@@ -2,13 +2,12 @@ import Navbar from 'components/Navbar';
 import React, { useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { validateEmail, validatePassword } from 'utilities';
-import { apiLogin } from 'api/account';
+import { signUp } from 'api/account';
 import MessageBox from 'components/Utils/MessageBox';
 import Container from 'components/Utils/Container';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export default function Login({ location }) {
-    const [messageParam, setMessageParam] = useState(location.state ? location.state.message : '');
+export default function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isValid, setValid] = useState({});
@@ -16,7 +15,6 @@ export default function Login({ location }) {
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
     const [loading, setLoading] = useState(false);
-    const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
         setValid({ email: email && validateEmail(email), password: password && validatePassword(password) });
@@ -25,45 +23,29 @@ export default function Login({ location }) {
             setPassword('');
             setValid({});
             setTouched({});
-            clearMessage();
+            setTimeout(() => {
+                setStatus('');
+                setMessage('');
+            }, 5000);
         }
-        if (messageParam) {
-            setStatus('success');
-            setMessage(messageParam);
-            clearMessage();
-        }
-    }, [email, password, status, messageParam]);
+    }, [email, password, status]);
 
-    const clearMessage = () => {
-        setTimeout(() => {
-            setStatus('');
-            setMessage('');
-            setMessageParam('');
-        }, 5000);
-    };
-
-    const login = async () => {
+    const sendSignUp = async () => {
         if (isValid.email && isValid.password) {
             setLoading(true);
-            const { status, message } = await apiLogin(email, password);
-            if (status === 'success') {
-                setTimeout(() => {
-                    setRedirect(true);
-                }, 1000);
-            } else {
-                setStatus(status);
-                setMessage(message);
-                setLoading(false);
-            }
+            const { status, message } = await signUp(email, password);
+            setStatus(status);
+            setMessage(message);
+            setLoading(false);
         }
     };
 
-    return redirect ? <Redirect to="/" /> : (
+    return (
         <>
             <Navbar />
             <Container>
                 <MessageBox status={status} message={message} />
-                <p>Log in</p>
+                <p>Sign up now</p>
                 <Form>
                     <Form.Group>
                         <Form.Control
@@ -100,10 +82,13 @@ export default function Login({ location }) {
                         />
                         <Form.Control.Feedback type="invalid">Please enter a valid password.</Form.Control.Feedback>
                     </Form.Group>
-                    <Button variant="primary" block onClick={login} disabled={loading}>
-                        Log in
+                    <Button variant="dark" block onClick={sendSignUp} disabled={loading}>
+                        Continue
                     </Button>
                 </Form>
+                <div className="mt-4 text-center small">
+                    <p>Already have an account? <Link to="/login">Log in</Link></p>
+                </div>
             </Container>
         </>
     );
