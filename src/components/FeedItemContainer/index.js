@@ -5,7 +5,7 @@ import { Image } from 'react-bootstrap'
 const FeedItemContainer = ({ items, isLoading, getItems }) => {
     const voteItems = items.map((item, index) => {
         const currentPosition = index + 1
-        const positionToGetNext = items.length - 2
+        const positionToGetNext = items.length
         if (currentPosition === positionToGetNext) {
             return <VoteItem key={index} item={item} isLoading={isLoading} getItems={getItems} hasRef={true} />
         } else {
