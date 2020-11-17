@@ -1,5 +1,5 @@
 export const isIOS = function () {
-    return [
+    const ios = [
         'iPad Simulator',
         'iPhone Simulator',
         'iPod Simulator',
@@ -8,5 +8,7 @@ export const isIOS = function () {
         'iPod'
     ].includes(navigator.platform)
         // iPad on iOS 13 detection
-        || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+        || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+    if (ios) alert('IOS!')
+    return ios
 }
