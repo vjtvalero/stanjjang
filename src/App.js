@@ -4,7 +4,6 @@ import Routes from './routes'
 import PWAPrompt from 'react-ios-pwa-prompt'
 
 function App() {
-    alert(navigator.platform)
     return (
         <>
             <PWAPrompt promptOnVisit={1} timesToShow={3} copyClosePrompt="Close" permanentlyHideOnDismiss={false}/>
