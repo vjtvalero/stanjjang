@@ -4,6 +4,7 @@ import Navbar from 'components/Navbar';
 import FeedItemContainer from 'components/FeedItemContainer';
 import { Image } from 'react-bootstrap';
 import { apiIsLoggedIn } from 'api/account';
+import BottomNavbar from 'components/Navbar/BottomNavbar';
 
 const Main = () => {
   const loadingImage = 'assets/images/loading.gif';
@@ -36,6 +37,7 @@ const Main = () => {
         <FeedItemContainer items={items} isLoading={isLoading} getItems={getItems} />
         {isLoading && <Image src={loadingImage} alt="loading img" fluid />}
       </div>
+      <BottomNavbar />
     </div>
   );
 };
