@@ -36,10 +36,10 @@ export const apiLogin = async (email, password) => {
             throw new Error('Unknown error.');
         }
     } catch (error) {
-        if (error.response.data) {
+        if (error.response) {
             return { status: 'error', message: error.response.data.statusCode === 401 ? 'Your email or password is incorrect.' : error.response.data.message };
         } else {
-            console.log(error);
+            return { status: 'error', message: 'Something went wrong with our servers. Please report this to the administrator.' };
         }
     }
 };

@@ -6,11 +6,14 @@ import Login from 'components/Login';
 import Logout from 'components/Login/Logout';
 import Signup from 'components/Signup';
 import ConfirmEmail from 'components/Signup/ConfirmEmail';
+import Vote from 'components/Vote';
 
 function Routes() {
     return (
         <Switch>
             <Route path="/" exact component={Main} />
+            <Route path="/vote" exact component={Vote} />
+            <Route path="/search" exact component={Main} />
             <Route path="/login" exact component={Login} />
             <Route path="/logout" exact component={Logout} />
             <Route path="/signup" exact component={Signup} />

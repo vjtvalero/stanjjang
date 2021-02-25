@@ -1,16 +1,19 @@
 @font-face {
-  font-family: "ConcertOne";
-  src: local("ConcertOne"),
-    url(./assets/fonts/ConcertOne.ttf) format("truetype");
+  font-family: 'ConcertOne';
+  src: local('ConcertOne'), url(./assets/fonts/ConcertOne.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: "Quicksand";
-  src: local("Quicksand"),
-    url(./assets/fonts/Quicksand-Regular.ttf) format("truetype");
+  font-family: 'Quicksand';
+  src: local('Quicksand'), url(./assets/fonts/Quicksand-Regular.ttf) format('truetype');
 }
 
 body {
   background-color: #f9fafa !important;
-  font-family: "Quicksand";
+  font-family: 'Quicksand';
+}
+
+a,
+a:hover {
+  color: inherit;
 }

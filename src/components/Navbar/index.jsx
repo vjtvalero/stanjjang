@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { apiIsLoggedIn } from 'api/account';
 
-const Navbar = ({ profile }) => {
+const Navbar = () => {
+  const [profile, setProfile] = useState({});
+
+  useEffect(() => {
+    checkLogin();
+  }, []);
+
+  const checkLogin = async () => {
+    const result = await apiIsLoggedIn();
+    setProfile(result);
+  };
+
   return (
     <div id="navbar" style={styles} className="py-2 px-3 d-flex justify-content-between align-items-center">
       <span style={{ fontFamily: 'ConcertOne', fontSize: '1rem' }}>

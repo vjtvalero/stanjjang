@@ -10,7 +10,8 @@ export const fetchItems = async (after) => {
             image: data.url,
             title: data.title,
             author: data.author,
-            ref: data.name
+            ref: data.name,
+            group: data.link_flair_text
         }
     })
     return items
