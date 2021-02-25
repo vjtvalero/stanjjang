@@ -17,3 +17,7 @@ a,
 a:hover {
   color: inherit;
 }
+
+.spacer {
+  height: 1rem;
+}
