@@ -40,7 +40,17 @@ const VoteItem = ({ item, isLoading, getItems, hasRef = false }) => {
         />
         <span style={{ marginLeft: '1rem', fontWeight: 'bold', fontSize: '0.8rem' }}>{item.author}</span>
       </p>
-      <Image src={item.image} alt="kpop img" fluid />
+      <a href={item.link} target="_blank" rel="noopener noreferrer">
+        <Image
+          src={item.image}
+          alt="kpop img"
+          fluid
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = '/assets/images/not-found.png';
+          }}
+        />
+      </a>
       <div style={infoStyle}>
         <p style={{ marginBottom: 0 }}>
           <Badge variant="secondary">{item.group}</Badge> {item.title}
