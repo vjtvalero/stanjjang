@@ -48,7 +48,7 @@ const TopicBox = ({ data }) => {
     cursor: 'pointer'
   };
   return (
-    <div style={styles} onClick={}>
+    <div style={styles}>
       <strong>{data.title}</strong>
       <br />
       <small style={{ color: '#f5f5f5' }}>{data.date}</small>
