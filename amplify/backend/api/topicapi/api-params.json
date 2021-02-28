@@ -1,0 +1,38 @@
+{
+    "paths": [
+        {
+            "name": "/topic",
+            "lambdaFunction": "topicfunction",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/GET"
+                ]
+            },
+            "policyResourceName": "/topic"
+        }
+    ],
+    "resourceName": "topicapi",
+    "apiName": "topicapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "topicfunction"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-stanjjang-stanjjang-152922-authRole",
+        "unAuthRoleName": "amplify-stanjjang-stanjjang-152922-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "topicfunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

@@ -27,6 +27,12 @@
     "categories": {
       "auth": {
         "stanjjangf3891812": {}
+      },
+      "function": {
+        "topicfunction": {
+          "deploymentBucketName": "amplify-stanjjang-stanjjang-152922-deployment",
+          "s3Key": "amplify-builds/topicfunction-6f516e4b6e5a63576859-build.zip"
+        }
       }
     }
   }
